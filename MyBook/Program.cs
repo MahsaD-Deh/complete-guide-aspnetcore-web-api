@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MyBook.Data;
 using MyBook.Data.Services;
+using MyBook.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefualtConnectionString");
@@ -33,6 +34,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+// app.ConfigureBuilderInExceptionHandler();
+app.ConfigureCustomExceptionHandler();
 
 app.UseAuthorization();
 
