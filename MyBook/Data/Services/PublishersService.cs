@@ -2,7 +2,6 @@
 using MyBook.Data.ViewModels;
 using MyBook.Exceptions;
 using System.Text.RegularExpressions;
-using static Azure.Core.HttpHeader;
 
 namespace MyBook.Data.Services
 {
@@ -77,5 +76,30 @@ namespace MyBook.Data.Services
 
         private bool StringStartsWithNumber(string name) => Regex.IsMatch(name, @"^\d");
 
+
+        public List<Publisher> GetAllPublishers(string sortBy, string searchString)
+        {
+           var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
+
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy)
+                {
+                    case "name_desc":
+                        allPublishers = allPublishers.OrderByDescending(n => n.Name).ToList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                allPublishers = allPublishers.Where(n => n.Name.Contains(searchString,
+                    StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+
+            return allPublishers;
+        }
     }
 }

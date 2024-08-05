@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBook.ActionResults;
 using MyBook.Data.Services;
 using MyBook.Data.ViewModels;
 using MyBook.Exceptions;
@@ -16,6 +17,21 @@ namespace MyBook.Controllers
             _publishersService = publishersService;
         }
 
+
+        [HttpGet("GetAllPublishers")]
+        public IActionResult GetAllPublishers(string sortBy, string searchString)
+        {
+            try
+            {
+                var result = _publishersService.GetAllPublishers(sortBy, searchString);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Sorry, we could not load the publishers!!");
+            }
+            
+        }
         #region [HttpPost("Add-Publisher")]
         [HttpPost("Add-Publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
@@ -58,10 +74,25 @@ namespace MyBook.Controllers
             if (response != null)
             {
                 return Ok(response);
+                /*
+                var responseObj = new CustomActionResultVM()
+                {
+                    Publisher = response,
+                };
+                return new CustomActionResult(responseObj);
+                */
             }
             else
             {
                 return NotFound();
+
+                /*
+                var responseObj = new CustomActionResultVM()
+                {
+                    Exception = new Exception("This is coming from publishers controller!!"),
+                };
+                return new CustomActionResult(responseObj);
+                */
             }
         }
         #endregion
