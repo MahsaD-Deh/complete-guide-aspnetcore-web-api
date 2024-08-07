@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using MyBook.Data;
 using MyBook.Data.Services;
 using MyBook.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefualtConnectionString");
@@ -19,6 +20,15 @@ builder.Services.AddTransient<AuthorsService>();
 builder.Services.AddTransient<PublishersService>();
 
 builder.Services.AddEndpointsApiExplorer();
+
+
+
+builder.Services.AddApiVersioning( config =>
+{
+    config.DefaultApiVersion = new ApiVersion(1, 0);
+    config.AssumeDefaultVersionWhenUnspecified = true;
+});
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyBookProject", Version = "v1" });

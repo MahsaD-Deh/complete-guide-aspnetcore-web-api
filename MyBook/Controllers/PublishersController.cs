@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyBook.ActionResults;
 using MyBook.Data.Services;
 using MyBook.Data.ViewModels;
 using MyBook.Exceptions;
@@ -17,7 +16,7 @@ namespace MyBook.Controllers
             _publishersService = publishersService;
         }
 
-
+        #region [HttpGet("GetAllPublishers")]
         [HttpGet("GetAllPublishers")]
         public IActionResult GetAllPublishers(string sortBy, string searchString)
         {
@@ -32,6 +31,9 @@ namespace MyBook.Controllers
             }
             
         }
+        #endregion
+
+
         #region [HttpPost("Add-Publisher")]
         [HttpPost("Add-Publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
