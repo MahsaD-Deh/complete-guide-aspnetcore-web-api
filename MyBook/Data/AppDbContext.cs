@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBook.Data.Models;
 
+
 namespace MyBook.Data
 {
     public class AppDbContext : DbContext
@@ -21,6 +22,8 @@ namespace MyBook.Data
                 .HasOne(a => a.Author)
                 .WithMany(b => b.Book_Authors)
                 .HasForeignKey(c => c.AuthorId);
+
+            modelBuilder.Entity<Log>().HasKey(n => n.Id);
         }
 
         public DbSet<Book> Books { get; set; }
@@ -30,5 +33,7 @@ namespace MyBook.Data
         public DbSet<Book_Author> Books_Authors { get; set; }
 
         public DbSet<Publisher> Publishers { get; set; }
+
+        public DbSet<Log> Logs { get; set; }
     }
 }
