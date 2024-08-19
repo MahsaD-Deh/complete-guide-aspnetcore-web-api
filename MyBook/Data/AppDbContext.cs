@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBook.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 namespace MyBook.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -24,6 +25,7 @@ namespace MyBook.Data
                 .HasForeignKey(c => c.AuthorId);
 
             modelBuilder.Entity<Log>().HasKey(n => n.Id);
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Book> Books { get; set; }

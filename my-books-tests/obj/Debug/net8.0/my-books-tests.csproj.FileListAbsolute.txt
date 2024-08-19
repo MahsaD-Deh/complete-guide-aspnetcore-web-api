@@ -162,3 +162,9 @@ C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\obj\Debug\net8.0\
 C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\obj\Debug\net8.0\my-books-tests.pdb
 C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\obj\Debug\net8.0\my-books-tests.genruntimeconfig.cache
 C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\obj\Debug\net8.0\ref\my-books-tests.dll
+C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\MahsaDehganpour\Downloads\Mahsa\MyBook\my-books-tests\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
