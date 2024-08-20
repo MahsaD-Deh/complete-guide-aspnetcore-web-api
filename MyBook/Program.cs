@@ -37,6 +37,23 @@ Serilog.Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(config).CreateLogger();
 
 //***************************************************************************************
+//Add  Token validation parameters:
+var tokenValidationParameters = new TokenValidationParameters()
+{
+    ValidateIssuerSigningKey = true,
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["JWT:Secret"])),
+
+    ValidateIssuer = true,
+    ValidIssuer = config["JWT:Issuer"],
+
+    ValidateAudience = true,
+    ValidAudience = config["JWT:Audience"],
+
+    ValidateLifetime = true,
+    ClockSkew = TimeSpan.Zero
+};
+
+builder.Services.AddSingleton<TokenValidationParameters>();
 
 //Add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -55,17 +72,7 @@ builder.Services.AddAuthentication(option =>
 {
     option.SaveToken = true;
     option.RequireHttpsMetadata = false;
-    option.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["JWT:Secret"])),
-
-        ValidateIssuer = true,
-        ValidIssuer = config["JWT:Issuer"],
-
-        ValidateAudience = true,
-        ValidAudience = config["JWT:Audience"],
-    };
+    option.TokenValidationParameters = tokenValidationParameters;
 });
 builder.Services.AddSwaggerGen(c =>
 {
@@ -87,6 +94,7 @@ app.UseHttpsRedirection();
 app.ConfigureBuilderInExceptionHandler();
 //app.ConfigureCustomExceptionHandler();
 
+//Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 

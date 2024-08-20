@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyBook.ActionResults;
 using MyBook.Data.Services;
 using MyBook.Data.ViewModels;
@@ -8,6 +9,7 @@ namespace MyBook.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PublishersController : ControllerBase
     {
         private PublishersService _publishersService;
