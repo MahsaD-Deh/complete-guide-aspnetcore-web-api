@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyBook.Data.Services;
 using MyBook.Data.ViewModels;
+using MyBook.Data.ViewModels.Authentication;
 
 namespace MyBook.Controllers
 {
+    [Authorize(Roles = UserRoles.Author)]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorsController : ControllerBase

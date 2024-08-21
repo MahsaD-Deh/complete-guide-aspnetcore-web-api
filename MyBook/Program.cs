@@ -101,5 +101,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 //AppDbInitializer.Seed(app);
+AppDbInitializer.SeedRoles(app).Wait();
 Serilog.Log.Logger.Information("Test");
 app.Run();
